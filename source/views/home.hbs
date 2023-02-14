@@ -1,0 +1,20 @@
+<div class="py-4">
+    <div class="container">
+        <h5 class="mb-5">Top rate movies</h5>
+        <div class="row">
+            {{#each movies}}
+            <div class="col col-sm-6 col-lg-4 col-xl-3 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{this.img}}" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <p class="card-text m-0"><b>{{this.title}}</b></p>
+                        <p class="card-text m-0">{{this.genres}}</p>
+                        <p class="card-text m-0 mb-3">{{this.rating}}</p>
+                        <a href="/details/{{this.id}}" class="btn btn-primary" style="width: 12rem;">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="py-4">
+    <div class="container">
+        <h5 class="mb-5">Result for "{{keyword}}"</h5>
+        <div class="row">
+            {{#each listSearch}}
+            <div class="col col-sm-6 col-lg-4 col-xl-3 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{this.img}}" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <p class="card-text m-0"><b>{{this.title}}</b></p>
+                        <p class="card-text m-0">{{this.genres}}</p>
+                        <p class="card-text m-0 mb-3">{{this.rating}}</p>
+                        <a href="/details/{{this.id}}" class="btn btn-primary" style="width: 12rem;">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <nav>
+            <ul class="pagination pagination-md">
+                {{#each links}}
+                    {{#if (isActive this.page this.active)}}
+                        <li class="page-item active"><a class="page-link" href="{{this.href}}">{{this.page}}</a></li>
+                    {{else}}
+                        <li class="page-item"><a class="page-link" href="{{this.href}}">{{this.page}}</a></li>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </nav>
+    </div>
+</div>
+

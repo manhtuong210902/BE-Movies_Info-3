@@ -1,0 +1,37 @@
+<div class="detail-movie bg-light p-4 rounded-2 mt-4">
+    <div class="row">
+        <div class="col-3">
+            <img
+                src="{{details.image}}"
+                alt="{{details.id}}"
+                class="w-100"
+            />
+        </div>
+        <div class="col-9">
+            <p><b>Name:</b> {{details.name}}</p>
+            <p><b>Legacy Name Text:</b> {{details.legacynametext}}</p>
+            <p><b>Birth Day:</b> {{details.birthday}}</p>
+            <p><b>Birth Place:</b> {{details.birthplace}}</p>
+            <p><b>Gender:</b> {{details.gender}}</p>
+            <p><b>Height Centimeters:</b> {{details.heightcentimeters}}</p>
+        </div>
+    </div>
+    <div class="mt-5">
+        <h5 class="mb-3">Related movie list</h5>
+        <div class="row">
+            {{#each movies}}
+            <div class="col col-sm-6 col-lg-4 col-xl-3 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{this.img}}" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <p class="card-text m-0"><b>{{this.title}}</b></p>
+                        <p class="card-text m-0">{{this.genres}}</p>
+                        <p class="card-text m-0 mb-3">{{this.rating}}</p>
+                        <a href="/details/{{this.id}}" class="btn btn-primary" style="width: 12rem;">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

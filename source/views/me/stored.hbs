@@ -1,0 +1,70 @@
+<div class="mt-4">
+    <h4 class="mb-3">My favorite movies</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">title</th>
+          <th scope="col">poster</th>
+          <th scope="col">rating</th>
+          <th scope="col">genres</th>
+          <th scope="col">action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each list}}
+        <tr>
+          <th scope="row">{{@index}}</th>
+          <td>{{this.title}}</td>
+          <td>
+            <img src="{{this.img}}" alt="" style="width: 100px ; height: 100px; object-fit:cover;">
+          </td>
+          <td>{{this.rating}}</td>
+          <td>{{this.genres}}</td>
+          <td>
+            <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-id="{{this.movieid}}" data-bs-target="#delete-movie-modal">
+              Delete
+            </a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+  </table>
+</div>
+
+{{!-- confirm delete movie --}}
+<div class="modal fade" id="delete-movie-modal" tabindex="-1" aria-labelledby="delete-movie-modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delete-movie-modalLabel">Remove movie</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure to remove this movie from your favorites
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-movie" type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    var movieId;
+    $('#delete-movie-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        movieId = button.data('id')
+    })
+
+    var btnDeletemovie = $('#btn-delete-movie')
+    btnDeletemovie.click(() => {
+        fetch(`http://localhost:20619/me/delete/${movieId}`, {
+            method: 'DELETE',
+        }).then(res => {
+            console.log(res.formData)
+            window.location.reload()
+        })
+    })
+</script>
